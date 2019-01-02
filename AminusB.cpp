@@ -1,4 +1,4 @@
-/*A-B 구하는 */
+/*A-B 구하는 코드*/
 
 #include <iostream>
 using namespace std;
