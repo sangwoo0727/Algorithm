@@ -1,8 +1,8 @@
-/* 1182 ºÎºÐÁýÇÕÀÇ ÇÕÀÌ S°¡ µÇ´Â ¸ðµç ºÎºÐÁýÇÕÀÇ °³¼ö¸¦ Ãâ·ÂÇÏ´Â ¹®Á¦
-Ã³À½¿¡ ºÎºÐÁýÇÕÀÇ ÇÕÀ» ±¸ÇÏ±â À§ÇØ 2Áß for¹®À¸·Î ÁÙÀÌ´Â °í¹ÎÀ» Çß´Âµ¥
-µµ¹«Áö ÇØ°áÃ¥ÀÌ ¾È³ª¿Í¼­ Ã³À½ºÎÅÍ ´Ù½Ã »ý°¢ÇØ¼­,
-´Ü¼øÇÏ°Ô Àç±Í¸¦ ÅëÇØ, i¹øÂ° ¹è¿­ °ªÀ» Æ÷ÇÔÇÏ´Â Áö ¾ÈÇÏ´ÂÁö ·Î ³ª´²¼­ 
-Àç±Í¸¦ µ¹·Á¼­ ÇØ°áÇß´Ù.*/
+/* 1182 ë¶€ë¶„ì§‘í•©ì˜ í•©ì´ Sê°€ ë˜ëŠ” ëª¨ë“  ë¶€ë¶„ì§‘í•©ì˜ ê°œìˆ˜ë¥¼ ì¶œë ¥í•˜ëŠ” ë¬¸ì œ
+ì²˜ìŒì— ë¶€ë¶„ì§‘í•©ì˜ í•©ì„ êµ¬í•˜ê¸° ìœ„í•´ 2ì¤‘ forë¬¸ìœ¼ë¡œ ì¤„ì´ëŠ” ê³ ë¯¼ì„ í–ˆëŠ”ë°
+ë„ë¬´ì§€ í•´ê²°ì±…ì´ ì•ˆë‚˜ì™€ì„œ ì²˜ìŒë¶€í„° ë‹¤ì‹œ ìƒê°í•´ì„œ,
+ë‹¨ìˆœí•˜ê²Œ ìž¬ê·€ë¥¼ í†µí•´, ië²ˆì§¸ ë°°ì—´ ê°’ì„ í¬í•¨í•˜ëŠ” ì§€ ì•ˆí•˜ëŠ”ì§€ ë¡œ ë‚˜ëˆ ì„œ 
+ìž¬ê·€ë¥¼ ëŒë ¤ì„œ í•´ê²°í–ˆë‹¤.*/
 
 #include <iostream>
 using namespace std;
@@ -14,13 +14,13 @@ int cnt;
 
 void go(int i, int sum) {
 	sum += arr[i];
-	if (i >= N) //±âÀúÁ¶°Ç i°¡ N°ú °°°Å³ª ´õ Ä¿Áö¸é, ¸®ÅÏ
+	if (i >= N) //ê¸°ì €ì¡°ê±´ iê°€ Nê³¼ ê°™ê±°ë‚˜ ë” ì»¤ì§€ë©´, ë¦¬í„´
 		return;
-	if (sum == S) { // sumÀÌ S¿Í °°¾ÆÁö¸é cnt¸¦ Áõ°¡
+	if (sum == S) { // sumì´ Sì™€ ê°™ì•„ì§€ë©´ cntë¥¼ ì¦ê°€
 		cnt++;
 	}
-	go(i + 1, sum - arr[i]); // arr[i]°¡ Æ÷ÇÔµÇ´Â °æ¿ì
-	go(i + 1, sum); //Æ÷ÇÔµÇÁö ¾Ê´Â °æ¿ì
+	go(i + 1, sum - arr[i]); // arr[i]ê°€ í¬í•¨ë˜
+	go(i + 1, sum); //í¬í•¨ë˜ëŠ” ê²½ìš°
 	return;
 }
 
@@ -30,7 +30,7 @@ int main() {
 	for (int i = 0; i < N; i++) {
 		scanf("%d", &arr[i]);
 	}
-	go(0, 0); //0¹øÂ° ÀÎµ¦½º, ÇÕÀÌ 0ÀÎ °æ¿ìºÎÅÍ ½ÃÀÛ
+	go(0, 0); //0ë²ˆì§¸ ì¸ë±ìŠ¤, í•©ì´ 0ì¸ ê²½ìš°ë¶€í„° ì‹œìž‘
 	printf("%d\n", cnt);
 	return 0;
 }
