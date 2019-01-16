@@ -19,7 +19,7 @@ void go(int i, int sum) {
 	if (sum == S) { // sum이 S와 같아지면 cnt를 증가
 		cnt++;
 	}
-	go(i + 1, sum - arr[i]); // arr[i]가 포함되
+	go(i + 1, sum - arr[i]); // arr[i]가 포함되지 않는 경우 다시 arr[i]를 뺀다
 	go(i + 1, sum); //포함되는 경우
 	return;
 }
