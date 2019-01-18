@@ -22,7 +22,7 @@ int BSearch(int arr[], int len, int target) { //arr[] == *arr
 int main() {
 	int arr[] = { 1,3,5,7,9 };
 	int idx;
-
+	printf("%d", arr[]);
 	idx = BSearch(arr, sizeof(arr) / sizeof(int), 7);  //7 찾기위한 이진탐색
 	if (idx == -1) printf("탐색실패\n");
 	else printf("타겟 저장 인덱스: %d\n", idx);
