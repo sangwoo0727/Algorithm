@@ -1,3 +1,7 @@
+/*로또문제 
+
+13? 까지 숫자중에 6개를 뽑을 수 있는 모든 경우의 수를 나열하는 문제*/
+
 #include <iostream>
 using namespace std;
 int k;
