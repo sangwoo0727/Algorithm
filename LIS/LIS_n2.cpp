@@ -1,7 +1,7 @@
-/*LIS ¾Ë°í¸®Áò -> Longest Increasing Subsequence (ÃÖÀåÁõ°¡ºÎºĞ¼ø¿­)
-O(n^2)°ú O(nlogn) µÎ °¡Áö ¹æ½ÄÀÌ Á¸ÀçÇÑ´Ù. 
-°¡·É {10, 20, 10, 30, 20, 50}ÀÌ ÀÖ´Ù¸é LIS´Â 10,20,30,50 ÀÌ µÈ´Ù. 
-LIS¸¦ DP¸¦ ÀÌ¿ëÇØ Çª´Â ¹æ½Ä */
+/*LIS ì•Œê³ ë¦¬ì¦˜ -> Longest Increasing Subsequence (ìµœì¥ì¦ê°€ë¶€ë¶„ìˆœì—´)
+O(n^2)ê³¼ O(nlogn) ë‘ ê°€ì§€ ë°©ì‹ì´ ì¡´ì¬í•œë‹¤. 
+ê°€ë ¹ {10, 20, 10, 30, 20, 50}ì´ ìˆë‹¤ë©´ LISëŠ” 10,20,30,50 ì´ ëœë‹¤. 
+LISë¥¼ DPë¥¼ ì´ìš©í•´ í‘¸ëŠ” ë°©ì‹ */
 
 #include <iostream>
 using namespace std;
@@ -13,7 +13,7 @@ int main() {
 	int N;
 	scanf("%d", &N);
 	int max = 0;
-	for (int i = 0; i < N; i++) {
+	for (int i = 1; i < N; i++) {
 		scanf("%d", &arr[i]);
 	}
 	dp[0] = 1;
@@ -21,7 +21,7 @@ int main() {
 		dp[i] = 1;
 		for (int j = 0; j < i; j++) {
 			if (arr[i] > arr[j] && dp[j] + 1 > dp[i]) {
-				//Áõ°¡ ¼ö¿­
+				//ì¦ê°€ ìˆ˜ì—´
 				dp[i] = dp[j] + 1;
 			}
 		}
