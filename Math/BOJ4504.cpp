@@ -1,24 +1,18 @@
+/*4504 배수찾기
+배수찾는 기본문제*/
 #include <iostream>
 using namespace std;
 
 int main() {
-	int X;
-	int cnt = 0;
-	int result = 0;
-	int garbage = 64;
-
-	scanf("%d", &X);
-
-	if (X == 64) {
-		printf("1\n");
-		return 0;
+	int n, k;
+	scanf("%d", &n);
+	while (1) {
+		scanf("%d", &k);
+		if (k == 0) return 0;
+		if (k%n == 0)
+			printf("%d is a multiple of %d.\n", k, n);
+		if (k%n != 0)
+			printf("%d is NOT a multiple of %d.\n", k, n);
 	}
-	while (X != result) {
-		garbage = garbage / 2;
-		if (garbage + result > X) continue;
-		result += garbage;
-		cnt++;
-	}
-	printf("%d\n", cnt);
 	return 0;
 }
