@@ -1,3 +1,5 @@
+/*1094 막대기 문제
+그냥 문제 주어진대로 조건쓰면 된다.*/
 #include <iostream>
 using namespace std;
 
