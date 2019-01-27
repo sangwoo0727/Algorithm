@@ -26,14 +26,14 @@ int main() {
 	for (int i = 1; i <= N; i++) {
 		scanf("%d", &arr[i]);
 	}
-	for (int i = 1; i <= N; i++) {
+	for (int i = 1; i <= N; i++) { //범위에 대해 max , min을 구해놓는 과정
 		for (int j = i; j <= N; j++) {
 			MAX[i][j] = max(MAX[i][j-1], arr[j]);
 			Min[i][j] = min(Min[i][j-1], arr[j]);
 		}
 	}
 	dp[0][0] = 0;
-	for (int i = 1; i <= N; i++) {
+	for (int i = 1; i <= N; i++) {  //dp 만들어나가는 조건
 		for (int j = 1; j < i; j++) {
 			first = max(first, dp[j][i-1]);
 		}
@@ -42,7 +42,7 @@ int main() {
 		}
 		first = 0;
 	}
-	for (int i = 1; i <= N; i++) {
+	for (int i = 1; i <= N; i++) { //마지막 dp중에 최대값 출력
 		result = max(result, dp[i][N]);
 	}
 	printf("%d", result);
