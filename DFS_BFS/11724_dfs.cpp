@@ -1,9 +1,10 @@
-/*11724¹ø ¿¬°á¿ä¼ÒÀÇ °³¼ö ¹®Á¦
-bfs·Î Ç¬ ¹æ½ÄÃ³·³ dfs·Î Ç¬ ¹æ½Ä*/
+/*11724ë²ˆ ì—°ê²°ìš”ì†Œì˜ ê°œìˆ˜ ë¬¸ì œ
+bfsë¡œ í‘¼ ë°©ì‹ì²˜ëŸ¼ dfsë¡œ í‘¼ ë°©ì‹*/
 
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <algorithm>
 using namespace std;
 
 vector <vector <int>> adj(1002);
@@ -26,6 +27,9 @@ int main() {
 		adj[u].push_back(v);
 		adj[v].push_back(u);
 	}
+	for(int i=1;i<=n;i++) {
+        sort(adj[i].begin(),adj[i].end());
+        }
 	for (int i = 1; i <= n; i++) {
 		if (check[i] == 1) continue;
 		dfs(i);
