@@ -1,8 +1,9 @@
-/*11724¹ø ¿¬°á¿ä¼ÒÀÇ °³¼ö Ã£´Â ¹®Á¦
-ÁÖ¾îÁø Á¢Á¡°ú °£¼±À» ÅëÇØ ±×·¡ÇÁ°¡ ¸¸µé¾îÁö´Âµ¥
-±× ±×·¡ÇÁ°¡ ¿©·¯°³ÀÏ¶§ ¿¬°áµÈ ÅëÀÌ ¸î°³ÀÎÁö Ã£´Â¹®Á¦
-bfsµç dfsµç »ó°ü¾ø´Ù.*/
+/*11724ë²ˆ ì—°ê²°ìš”ì†Œì˜ ê°œìˆ˜ ì°¾ëŠ” ë¬¸ì œ
+ì£¼ì–´ì§„ ì ‘ì ê³¼ ê°„ì„ ì„ í†µí•´ ê·¸ëž˜í”„ê°€ ë§Œë“¤ì–´ì§€ëŠ”ë°
+ê·¸ ê·¸ëž˜í”„ê°€ ì—¬ëŸ¬ê°œì¼ë•Œ ì—°ê²°ëœ í†µì´ ëª‡ê°œì¸ì§€ ì°¾ëŠ”ë¬¸ì œ
+bfsë“  dfsë“  ìƒê´€ì—†ë‹¤.*/
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <queue>
 using namespace std;
@@ -36,6 +37,9 @@ int main() {
 		adj[u].push_back(v);
 		adj[v].push_back(u);
 	}
+	for(int i=1;i<=n;i++){
+        	sort(adj[i].begin(),adj[i].end());
+        }
 	for (int i = 1; i <= n; i++) {
 		if (check[i] == 1) continue;
 		bfs(i);
