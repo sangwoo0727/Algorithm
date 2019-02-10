@@ -1,3 +1,6 @@
+/*SW4406 모음이 보이지 않는 사람
+문자열을 입력받고, 모음을 빼고 출력하는 문제이다.*/
+
 #include <iostream>
 #include <cstring>
 using namespace std;
