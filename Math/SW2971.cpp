@@ -16,7 +16,7 @@ int main() {
 			scanf("%d", &arr[i]);
 			result += arr[i];
 		}
-		ans = double(result / 10);
+		ans = result / 10;
 		if (result % 10 >= 5) ans++;
 		printf("#%d %d\n", t, ans);
 		result = 0;
