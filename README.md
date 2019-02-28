@@ -8,6 +8,6 @@ c언어나 c++ 로 작성
 
 
 
-https://www.acmicpc.net/
+백준 온라인 저지 : https://www.acmicpc.net/
 
-https://swexpertacademy.com
+삼성 엑스퍼트 아카데미 : https://swexpertacademy.com
