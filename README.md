@@ -1,4 +1,4 @@
-# BOJ_coding
+# My_coding
 
 알고리즘 이론 코드 정리 &
 
