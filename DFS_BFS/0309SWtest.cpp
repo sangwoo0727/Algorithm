@@ -6,15 +6,15 @@ using namespace std;
 int N;
 int board[18][18];
 int cnt;
-queue <pair <int, int>> tail; //¹ö½ºÀÇ µÚ²Ç¹«´Ï
-queue < pair <int, int>> head; //¹ö½ºÀÇ ¾Õ²Ç¹«´Ï
+queue <pair <int, int>> tail; //ë²„ìŠ¤ì˜ ë’¤ê½ë¬´ë‹ˆ
+queue < pair <int, int>> head; //ë²„ìŠ¤ì˜ ì•ê½ë¬´ë‹ˆ
 
 void bfs() {
-	if (board[0][0] == 0 && board[0][1] == 0) { //¹ö½º°¡ ¿À¸¥ÂÊÀ¸·Î Ãâ¹ßÇÒ ¼ö ÀÖÀ» ¶§
+	if (board[0][0] == 0 && board[0][1] == 0) { //ë²„ìŠ¤ê°€ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì¶œë°œí•  ìˆ˜ ìˆì„ ë•Œ
 		tail.push({ 0,0 });
 		head.push({ 0,1 });
 	}
-	if (board[0][0] == 0 && board[1][0] == 0) { //¹ö½º°¡ ¾Æ·¡ÂÊÀ¸·Î Ãâ¹ß ÇÒ ¼ö ÀÖÀ» ¶§
+	if (board[0][0] == 0 && board[1][0] == 0) { //ë²„ìŠ¤ê°€ ì•„ë˜ìª½ìœ¼ë¡œ ì¶œë°œ í•  ìˆ˜ ìˆì„ ë•Œ
 		tail.push({ 0,0 });
 		head.push({ 1,0 });
 	}
@@ -25,39 +25,39 @@ void bfs() {
 		int hy = head.front().second;
 		head.pop();
 		tail.pop();
-		if (hx==N-1 && hy== N-1 && tx==hx-1 && ty==hy) cnt++; //µµÂøÁöÁ¡¿¡ ´ëÇØ ´ë°¢¼±¹æÇâÀÌ ¾Æ´Ò¶§¸¸ Ä«¿îÆ® ¿Ã¸°´Ù.
+		if (hx==N-1 && hy== N-1 && tx==hx-1 && ty==hy) cnt++; //ë„ì°©ì§€ì ì— ëŒ€í•´ ëŒ€ê°ì„ ë°©í–¥ì´ ì•„ë‹ë•Œë§Œ ì¹´ìš´íŠ¸ ì˜¬ë¦°ë‹¤.
 		if (hx == N - 1 && hy == N - 1 && tx == hx && ty == hy - 1) cnt++;
 
-		if (hx == tx + 1 && hy == ty) { //¹ö½º°¡ ¾Æ·¡ ¹æÇâÀ» ÇâÇØ ÀÖÀ» ¶§
-			if (hx + 1 < N&& board[hx + 1][hy] == 0) { //¾Æ·¡·Î °¥ ¼öÀÖÀ» °æ¿ì
+		if (hx == tx + 1 && hy == ty) { //ë²„ìŠ¤ê°€ ì•„ë˜ ë°©í–¥ì„ í–¥í•´ ìˆì„ ë•Œ
+			if (hx + 1 < N&& board[hx + 1][hy] == 0) { //ì•„ë˜ë¡œ ê°ˆ ìˆ˜ìˆì„ ê²½ìš°
 				tail.push({ tx + 1,ty });
 				head.push({ hx + 1,hy });
 			}
-			if (hx + 1 < N&&hy + 1 < N&&board[hx + 1][hy] == 0 && board[hx + 1][hy + 1] == 0 && board[hx][hy + 1] == 0) { //¹ö½º°¡ ´ë°¢¼±À¸·Î °¥ ¼ö ÀÖÀ»°æ¿ì
+			if (hx + 1 < N&&hy + 1 < N&&board[hx + 1][hy] == 0 && board[hx + 1][hy + 1] == 0 && board[hx][hy + 1] == 0) { //ë²„ìŠ¤ê°€ ëŒ€ê°ì„ ìœ¼ë¡œ ê°ˆ ìˆ˜ ìˆì„ê²½ìš°
 				tail.push({ tx + 1,ty });
 				head.push({ hx + 1,hy + 1 });
 			}
 		}
-		else if (hx == tx + 1 && hy == ty + 1) { //¹ö½º°¡ ´ë°¢¼± ¹æÇâÀ» ÇâÇØ ÀÖÀ» ¶§
-			if (hy + 1 < N&&board[hx][hy + 1]==0) { //¿À¸¥ÂÊÀ¸·Î ÁøÇàÇÒ ¼ö ÀÖ´Â °æ¿ì
+		else if (hx == tx + 1 && hy == ty + 1) { //ë²„ìŠ¤ê°€ ëŒ€ê°ì„  ë°©í–¥ì„ í–¥í•´ ìˆì„ ë•Œ
+			if (hy + 1 < N&&board[hx][hy + 1]==0) { //ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì§„í–‰í•  ìˆ˜ ìˆëŠ” ê²½ìš°
 				tail.push({ tx + 1,ty + 1 });
 				head.push({ hx,hy + 1 });
 			}
-			if (hx + 1 < N&&hy + 1 < N&&board[hx + 1][hy + 1] == 0) { //´ë°¢¼±À¸·Î ÁøÇàÇÒ ¼ö ÀÖ´Â °æ¿ì
+			if (hx + 1 < N&&hy + 1 < N&&board[hx + 1][hy + 1] == 0&&board[hx+1][hy]==0&&board[hx][hy+1]==0) { //ëŒ€ê°ì„ ìœ¼ë¡œ ì§„í–‰í•  ìˆ˜ ìˆëŠ” ê²½ìš°
 				tail.push({ tx + 1,ty + 1 });
 				head.push({ hx + 1,hy + 1 });
 			}
-			if (hx + 1 < N&&board[hx + 1][hy] == 0) { //¾Æ·¡ÂÊÀ¸·Î ÁøÇàÇÒ ¼ö ÀÖ´Â °æ¿ì
+			if (hx + 1 < N&&board[hx + 1][hy] == 0) { //ì•„ë˜ìª½ìœ¼ë¡œ ì§„í–‰í•  ìˆ˜ ìˆëŠ” ê²½ìš°
 				tail.push({ tx + 1,ty + 1 });
 				head.push({ hx + 1,hy });
 			}
 		}
-		else if (hx == tx && hy == ty + 1) { //¹ö½º°¡ ¿À¸¥ÂÊ ¹æÇâÀ» ÇâÇØ ÀÖÀ» ¶§
-			if (hy + 1 < N&&board[hx][hy + 1] == 0) { //¿À¸¥ÂÊÀ¸·Î ÁøÇàÇÒ ¼ö ÀÖ´Â °æ¿ì
+		else if (hx == tx && hy == ty + 1) { //ë²„ìŠ¤ê°€ ì˜¤ë¥¸ìª½ ë°©í–¥ì„ í–¥í•´ ìˆì„ ë•Œ
+			if (hy + 1 < N&&board[hx][hy + 1] == 0) { //ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì§„í–‰í•  ìˆ˜ ìˆëŠ” ê²½ìš°
 				tail.push({ tx,ty + 1 });
 				head.push({ hx,hy + 1 });
 			}
-			if (hy + 1 < N&&hx + 1 < N&&board[hx + 1][hy + 1] == 0 && board[hx][hy + 1] == 0 && board[hx + 1][hy] == 0) { //´ë°¢¼±À¸·Î ÁøÇàÇÒ ¼ö ÀÖ´Â °æ¿ì
+			if (hy + 1 < N&&hx + 1 < N&&board[hx + 1][hy + 1] == 0 && board[hx][hy + 1] == 0 && board[hx + 1][hy] == 0) { //ëŒ€ê°ì„ ìœ¼ë¡œ ì§„í–‰í•  ìˆ˜ ìˆëŠ” ê²½ìš°
 				tail.push({ tx,ty + 1 });
 				head.push({ hx + 1,hy + 1 });
 			}
