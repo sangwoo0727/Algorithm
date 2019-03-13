@@ -1,11 +1,8 @@
-/*11279 ÃÖ´ëÈü*/
+/*11279 ìµœëŒ€í™ */
 #include <iostream>
 #include <queue>
 #include <functional>
 using namespace std;
-/*
-priority_queue <int,vector<int>,less<int>> q; ->ÃÖ´ëÈü
-priority_queue <int,vector<int>,greater<int>> q; ->ÃÖ¼ÒÈü*/
 priority_queue <int, vector<int>, less<int>> pq;
 
 int main() {
