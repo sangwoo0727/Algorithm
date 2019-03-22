@@ -1,6 +1,7 @@
 /*SW 4012 요리사
-재귀로 선택할 번호 반개 선택하고 
-선택된 숫자들 과 선택안된 숫자들을 각각 합해서 최소를 구해나가는 풀이*/
+재귀로 선택할 번호 반개 선택하고
+선택된 숫자들 과 선택안된 숫자들을 각각 합해서 최소를 구해나가는 풀이
+재귀는 항상 너무 어렵다.. */
 
 #include <iostream>
 #include <algorithm>
@@ -14,7 +15,7 @@ int N;
 int Min = 100000000;
 int result;
 void food_maker(int idx, int size) {
-	check[idx] = 1;
+	if(idx>0) check[idx] = 1;
 	int ansA=0 , ansB = 0;
 	if (size == N / 2) { //재귀가 끝났을 땐 연산 수행
 		for (int i = 1; i <= N; i++) {
@@ -43,7 +44,7 @@ int main() {
 				scanf("%d", &board[i][j]);
 			}
 		}
-		food_maker(1, 1);
+		food_maker(0, 0);
 		printf("#%d %d\n",t, Min);
 		Min = 1000000000;
 		memset(check, 0, sizeof(check));
