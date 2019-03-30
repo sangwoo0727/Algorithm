@@ -44,7 +44,3 @@ int main() {
 	printf("%d", Min);
 	return 0;
 }
-<<<<<<< HEAD
->>>>>>> 9b7436a85033bb4150ec580e33b00a6dad710f78
-=======
->>>>>>> 9b7436a85033bb4150ec580e33b00a6dad710f78
