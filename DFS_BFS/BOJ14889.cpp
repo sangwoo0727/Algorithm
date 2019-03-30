@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <iostream>
 #include <algorithm>
 #include <cmath>
@@ -41,6 +42,8 @@ int main() {
 	return 0;
 }
 =======
+=======
+>>>>>>> 9b7436a85033bb4150ec580e33b00a6dad710f78
 /* 스타트와 링크
 sw문제 중 요리사 문제와 똑같은 문제,
 문제 분류를 보면 단순 dfs 라고들 표현하는데, 어떤 부분이 '단순'인지는 잘 모르겟다.. 
@@ -87,4 +90,7 @@ int main() {
 	printf("%d", Min);
 	return 0;
 }
+<<<<<<< HEAD
+>>>>>>> 9b7436a85033bb4150ec580e33b00a6dad710f78
+=======
 >>>>>>> 9b7436a85033bb4150ec580e33b00a6dad710f78
