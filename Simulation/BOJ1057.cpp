@@ -1,4 +1,4 @@
-/* BOJ 1057¹ø Åä³Ê¸ÕÆ®*/
+/* BOJ 1057 í† ë„ˆë¨¼íŠ¸*/
 
 #include <iostream>
 using namespace std;
