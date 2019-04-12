@@ -1,4 +1,4 @@
-/*ÄÄÇ»ÅÍÁ¤º¸°øÇĞºÎ 201221315 °­ »ó ¿ì*/
+
 #include <iostream>
 #include <algorithm>
 #include <cmath>
@@ -6,21 +6,21 @@
 using namespace std;
 
 void make_seg(vector<int> &stick, vector<int> &segtree, int node, int start, int end) {
-	if (start == end) {//start¿Í end Áï ±¸°£ÀÌ Á¡À¸·Î ¹Ù²î¸é ¸®ÇÁ³ëµå¿¡ ÀÖ´Â ±× ÀÚÃ¼ ÀÎµ¦½º°¡ µÈ´Ù.
+	if (start == end) {//startì™€ end ì¦‰ êµ¬ê°„ì´ ì ìœ¼ë¡œ ë°”ë€Œë©´ ë¦¬í”„ë…¸ë“œì— ìˆëŠ” ê·¸ ìì²´ ì¸ë±ìŠ¤ê°€ ëœë‹¤.
 		segtree[node] = start;
 		return;
 	}
-	// start¿Í end°¡ ´Ù¸¥ °æ¿ì(¸®ÇÁ³ëµå°¡ ¾Æ´Ñ °æ¿ì)
+	// startì™€ endê°€ ë‹¤ë¥¸ ê²½ìš°(ë¦¬í”„ë…¸ë“œê°€ ì•„ë‹Œ ê²½ìš°)
 	make_seg(stick, segtree, node * 2, start, (start + end) / 2);
 	make_seg(stick, segtree, node * 2 + 1, (start + end) / 2 + 1, end);
-	// °¢ ±¸°£¿¡¼­ °¡Àå ³ôÀÌ°¡ ³·Àº Á÷»ç°¢ÇüÀÇ ÀÎµ¦½º¸¦ ³ëµå¿¡ ³Ö¾îÁØ´Ù.
+	// ê° êµ¬ê°„ì—ì„œ ê°€ì¥ ë†’ì´ê°€ ë‚®ì€ ì§ì‚¬ê°í˜•ì˜ ì¸ë±ìŠ¤ë¥¼ ë…¸ë“œì— ë„£ì–´ì¤€ë‹¤.
 	if (stick[segtree[node * 2]] <= stick[segtree[node * 2 + 1]])
-		segtree[node] = segtree[node * 2]; //´õ ³ôÀÌ°¡ ÀÛÀº ½ºÆ½ÀÇ idx °ªÀ» ¼¼±×¸ÕÆ®Æ®¸®¿¡ ³Ö´Â´Ù
+		segtree[node] = segtree[node * 2]; //ë” ë†’ì´ê°€ ì‘ì€ ìŠ¤í‹±ì˜ idx ê°’ì„ ì„¸ê·¸ë¨¼íŠ¸íŠ¸ë¦¬ì— ë„£ëŠ”ë‹¤
 	else segtree[node] = segtree[node * 2 + 1];
 }
 
-int repeat_func(vector<int> &stick, vector<int> &segtree, int node, int start, int end, int left, int right) { //Äõ¸®ÀÛ¾÷
-	//±¸ÇÏ°íÀÚ ÇÏ´Â ¹üÀ§´Â left~right , start¿Í end·Î ±¸°£ ³ª´®
+int repeat_func(vector<int> &stick, vector<int> &segtree, int node, int start, int end, int left, int right) { //ì¿¼ë¦¬ì‘ì—…
+	//êµ¬í•˜ê³ ì í•˜ëŠ” ë²”ìœ„ëŠ” left~right , startì™€ endë¡œ êµ¬ê°„ ë‚˜ëˆ”
 	if (left > end || right < start)	return -1;
 	if (left <= start && end <= right)	return segtree[node];
 	int left_ans = repeat_func(stick, segtree, node * 2, start, (start+end)/2, left, right);
@@ -32,17 +32,17 @@ int repeat_func(vector<int> &stick, vector<int> &segtree, int node, int start, i
 }
 
 long long Max_Rectangle(vector<int> &stick, vector<int> &segtree, int left, int right) {
-	int min_idx = repeat_func(stick, segtree, 1, 0, stick.size() - 1, left, right); // Äõ¸®¸¦ ÅëÇØ ±× ±¸°£¿¡ ´ëÇÑ ÃÖ¼Ò ³ôÀÌ ¸·´ë ÀÎµ¦½º °¡Á®¿È
+	int min_idx = repeat_func(stick, segtree, 1, 0, stick.size() - 1, left, right); // ì¿¼ë¦¬ë¥¼ í†µí•´ ê·¸ êµ¬ê°„ì— ëŒ€í•œ ìµœì†Œ ë†’ì´ ë§‰ëŒ€ ì¸ë±ìŠ¤ ê°€ì ¸ì˜´
 	long long area = (long long)(right - left + 1)*(long long)stick[min_idx];
-	if (left <= min_idx - 1) { //ÃÖ¼Ò³ôÀÌ Ã£Àº ¸·´ë±â ÀÎµ¦½º ¿ŞÂÊ¿¡ ¾ÆÁ÷ ½ºÆ½µéÀÌ Á¸ÀçÇÏ¸é ºĞÇÒÁ¤º¹
+	if (left <= min_idx - 1) { //ìµœì†Œë†’ì´ ì°¾ì€ ë§‰ëŒ€ê¸° ì¸ë±ìŠ¤ ì™¼ìª½ì— ì•„ì§ ìŠ¤í‹±ë“¤ì´ ì¡´ì¬í•˜ë©´ ë¶„í• ì •ë³µ
 		long long left_area = Max_Rectangle(stick, segtree, left, min_idx - 1);
 		area = max(area, left_area);
 	}
-	if (right >= min_idx + 1) {//ÃÖ¼Ò³ôÀÌ Ã£Àº ¸·´ë±â ÀÎµ¦½º ¿À¸¥ÂÊ¿¡ ¾ÆÁ÷ ½ºÆ½µéÀÌ Á¸ÀçÇÏ¸é ºĞÇÒÁ¤º¹
+	if (right >= min_idx + 1) {//ìµœì†Œë†’ì´ ì°¾ì€ ë§‰ëŒ€ê¸° ì¸ë±ìŠ¤ ì˜¤ë¥¸ìª½ì— ì•„ì§ ìŠ¤í‹±ë“¤ì´ ì¡´ì¬í•˜ë©´ ë¶„í• ì •ë³µ
 		long long right_area = Max_Rectangle(stick, segtree, min_idx + 1, right);
 		area = max(area, right_area);
 	}
-	return area; // ÃÖ´ë ³ĞÀÌ ¹İÈ¯
+	return area; // ìµœëŒ€ ë„“ì´ ë°˜í™˜
 }
 
 int main() {
@@ -53,11 +53,11 @@ int main() {
 		int h = 0;
 		if (log2(n) == (int)log2(n)) h = (int)log2(n);
 		else h = (int)log2(n) + 1;
-		vector<int> stick(n);  //È÷½ºÅä±×·¥ÀÇ ³ôÀÌ°¡ ÀúÀåµÈ ¹è¿­
+		vector<int> stick(n);  //íˆìŠ¤í† ê·¸ë¨ì˜ ë†’ì´ê°€ ì €ì¥ëœ ë°°ì—´
 		for (int i = 0; i < n; i++) scanf("%d", &stick[i]);
-		int tree_size = pow(2, h + 1); //¼¼±×¸ÕÆ® Æ®¸® ÃÖ´ë »çÀÌÁî
-		vector<int> segtree(tree_size); //¼¼±×¸ÕÆ® Æ®¸®¸¦ ¸¸µé±â À§ÇÑ ¹è¿­ -> °ªÀ¸·Î´Â arrÀÇ ÀÎµ¦½º¹øÈ£°¡ µé¾î°¨
-		make_seg(stick, segtree, 1, 0, n - 1); // ¼¼±×¸ÕÆ® Æ®¸® Çü¼º
+		int tree_size = pow(2, h + 1); //ì„¸ê·¸ë¨¼íŠ¸ íŠ¸ë¦¬ ìµœëŒ€ ì‚¬ì´ì¦ˆ
+		vector<int> segtree(tree_size); //ì„¸ê·¸ë¨¼íŠ¸ íŠ¸ë¦¬ë¥¼ ë§Œë“¤ê¸° ìœ„í•œ ë°°ì—´ -> ê°’ìœ¼ë¡œëŠ” arrì˜ ì¸ë±ìŠ¤ë²ˆí˜¸ê°€ ë“¤ì–´ê°
+		make_seg(stick, segtree, 1, 0, n - 1); // ì„¸ê·¸ë¨¼íŠ¸ íŠ¸ë¦¬ í˜•ì„±
 		long long result = Max_Rectangle(stick, segtree, 0, n - 1);
 		printf("%lld\n", result);
 	}
