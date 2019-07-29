@@ -13,7 +13,7 @@ typedef struct {
 	int y;
 }Robot;
 
-Robot robot[10000];
+Robot robot[100];
 Board board[100][100];
 int A, B;
 char direct[4] = { 'N','W','S','E' };
@@ -42,7 +42,7 @@ int robot_simul(int * robotNum, char * di_func, int * cnt) {
 	}
 	else if (*di_func == 'F') {
 		for (int c = 0; c < *cnt; c++) {
-			
+
 			if (robot[*robotNum].dir == 0) {
 				int xnext = robot[*robotNum].x;
 				int ynext = robot[*robotNum].y + 1;
@@ -54,7 +54,7 @@ int robot_simul(int * robotNum, char * di_func, int * cnt) {
 				}
 				if (board[B - ynext][xnext + 1].check == 0) {
 					board[B - ynext][xnext + 1].check = *robotNum;
-					board[B- robot[*robotNum].y][robot[*robotNum].x+1].check = 0;
+					board[B - robot[*robotNum].y][robot[*robotNum].x + 1].check = 0;
 					robot[*robotNum].x = xnext;
 					robot[*robotNum].y = ynext;
 				}
@@ -70,7 +70,7 @@ int robot_simul(int * robotNum, char * di_func, int * cnt) {
 				}
 				if (board[B - ynext][xnext + 1].check == 0) {
 					board[B - ynext][xnext + 1].check = *robotNum;
-					board[B- robot[*robotNum].y][robot[*robotNum].x+1].check = 0;
+					board[B - robot[*robotNum].y][robot[*robotNum].x + 1].check = 0;
 					robot[*robotNum].x = xnext;
 					robot[*robotNum].y = ynext;
 				}
@@ -86,7 +86,7 @@ int robot_simul(int * robotNum, char * di_func, int * cnt) {
 				}
 				if (board[B - ynext][xnext + 1].check == 0) {
 					board[B - ynext][xnext + 1].check = *robotNum;
-					board[B- robot[*robotNum].y][robot[*robotNum].x+1].check = 0;
+					board[B - robot[*robotNum].y][robot[*robotNum].x + 1].check = 0;
 					robot[*robotNum].x = xnext;
 					robot[*robotNum].y = ynext;
 				}
@@ -102,7 +102,7 @@ int robot_simul(int * robotNum, char * di_func, int * cnt) {
 				}
 				if (board[B - ynext][xnext + 1].check == 0) {
 					board[B - ynext][xnext + 1].check = *robotNum;
-					board[B- robot[*robotNum].y][robot[*robotNum].x+1].check = 0;
+					board[B - robot[*robotNum].y][robot[*robotNum].x + 1].check = 0;
 					robot[*robotNum].x = xnext;
 					robot[*robotNum].y = ynext;
 				}
@@ -129,12 +129,12 @@ int main() {
 		cin >> x >> y >> d;
 		robot[n].x = x;
 		robot[n].y = y;
-		board[B-y][x+1].check = n;
+		board[B - y][x + 1].check = n;
 		for (int i = 0; i < 4; i++) {
 			if (direct[i] == d) robot[n].dir = i;
 		}
 	}
-	
+
 	for (int m = 0; m < M; m++) {
 		int robot_num;
 		char func;
@@ -155,3 +155,4 @@ int main() {
 	}
 	return 0;
 }
+
