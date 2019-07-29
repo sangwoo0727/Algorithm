@@ -67,7 +67,7 @@ int main() {
 			newtree->cur = newtree->root;
 		}
 	}
-	//newtree->cur = newtree->root;
 	postorder(newtree->root);
+	free(newtree);
 	return 0;
 }
