@@ -13,16 +13,16 @@ typedef struct {
 	int m;
 }Core;
 
+Core core[13];
+Result ans;
 int board[13][13];
 int check[13][13];
 int dc[4] = { 0,0,-1,1 };
 int dr[4] = { -1,1,0,0 };
 int pos;
-Core core[13];
-Result ans;
 int N;
 
-void dfs(int idx, int ccnt, int leng) { //기계배열 idx,  기계 몇개 사용했는지 , 지금까지 길이
+void dfs(int idx, int ccnt, int leng) {
 	if (idx == pos) {
 		if (ans.core_cnt == 0 && ans.line_leng == 0) {
 			ans.core_cnt = ccnt;
