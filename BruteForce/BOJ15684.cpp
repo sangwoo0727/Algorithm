@@ -1,7 +1,4 @@
 #include <iostream>
-#include <queue>
-#include <utility>
-#include <cstring>
 using namespace std;
 
 typedef struct {
@@ -11,7 +8,6 @@ typedef struct {
 
 int N, M, H;
 Board board[35][12];
-int check[35][12];
 int ans = 100000;
 
 int checkladder() {
@@ -24,9 +20,7 @@ int checkladder() {
 				if (board[hnow][nnow].dir == 'r') {
 					nnow++;
 				}
-				else {
-					nnow--;
-				}
+				else nnow--;
 				hnow++;
 			}
 		}
@@ -59,11 +53,6 @@ void dfs(int n, int m, int cnt) {
 int main() {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	cin >> N >> M >> H;
-	for (int h = 1; h <= H; h++) {
-		for (int n = 1; n <= N; n++) {
-			board[h][n].num = 0;
-		}
-	}
 	if (M == 0) {
 		cout << "0\n";
 		return 0;
