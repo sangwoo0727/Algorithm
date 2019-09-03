@@ -16,10 +16,10 @@ typedef struct {
 
 Board board[102][102];
 queue <pair<int, char>> q;
-int dr[4] = { 0,1,0,-1 };
-int dc[4] = { 1,0,-1,0 };
 snake_info head;
 snake_info tail;
+int dr[4] = { 0,1,0,-1 };
+int dc[4] = { 1,0,-1,0 };
 int N;
 
 int main() {
@@ -48,9 +48,11 @@ int main() {
 		int rnext = head.r + dr[board[head.r][head.c].dir];
 		int cnext = head.c + dc[board[head.r][head.c].dir];
 		board[rnext][cnext].dir = board[head.r][head.c].dir;
-		if (board[rnext][cnext].check == 1) break;
+		if (rnext < 1 || rnext> N || cnext < 1 || cnext > N) 
+			break;
+		if (board[rnext][cnext].check == 1) 
+			break;
 		board[rnext][cnext].check = 1;
-		if (rnext < 1 || rnext> N || cnext < 1 || cnext > N) break;
 		if (board[rnext][cnext].apple == 0) {
 			head.r = rnext;
 			head.c = cnext;
@@ -67,13 +69,17 @@ int main() {
 		if (!q.empty()) {
 			if (q.front().first == t) {
 				if (q.front().second == 'D') {
-					if (board[head.r][head.c].dir == 3) board[head.r][head.c].dir = 0;
-					else board[head.r][head.c].dir++;
+					if (board[head.r][head.c].dir == 3) 
+						board[head.r][head.c].dir = 0;
+					else 
+						board[head.r][head.c].dir++;
 					q.pop();
 				}
 				else {
-					if (board[head.r][head.c].dir == 0) board[head.r][head.c].dir = 3;
-					else board[head.r][head.c].dir--;
+					if (board[head.r][head.c].dir == 0) 
+						board[head.r][head.c].dir = 3;
+					else 
+						board[head.r][head.c].dir--;
 					q.pop();
 				}
 			}
