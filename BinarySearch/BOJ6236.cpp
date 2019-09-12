@@ -5,8 +5,8 @@ using namespace std;
 
 
 int N, M;
-int board[100000];
-vector <int> v;
+vector <int> board;
+int ans = 1000000000;
 
 void bs(int left, int right) {
 	if (left > right) return;
@@ -26,7 +26,7 @@ void bs(int left, int right) {
 		}
 	}
 	if (cnt <= M) {
-		v.push_back(mid);
+		ans = min(ans, mid);
 		bs(left, mid - 1);
 	}
 	else {
@@ -39,12 +39,13 @@ int main() {
 	cin >> N >> M;
 	int min_range = 0, max_range = 0;
 	for (int n = 0; n < N; n++) {
-		cin >> board[n];
-		max_range += board[n];
-		if (min_range < board[n]) min_range = board[n];
+		int num;
+		cin >> num;
+		board.push_back(num);
+		max_range += num;
+		if (min_range < num) min_range = num;
 	}
 	bs(min_range, max_range);
-	sort(v.begin(), v.end());
-	cout << v[0] << "\n";
+	cout << ans << "\n";
 	return 0;
 }
