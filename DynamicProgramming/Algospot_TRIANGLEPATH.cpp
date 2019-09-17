@@ -6,6 +6,7 @@ using namespace std;
 int board[105][105];
 int dp[105][105];
 int result;
+
 int main() {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	int C;
