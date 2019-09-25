@@ -4,7 +4,6 @@
 using namespace std;
 
 string solution(string s) {
-	int n = s.length() / 2;
-	if (s.length() % 2) return s.substr(n, 1);
-	else return s.substr(n-1,2);
+	return s.length() % 2 ? s.substr(s.length()*0.5, 1) : s.substr(s.length()*0.5 - 1, 2);
 }
+
