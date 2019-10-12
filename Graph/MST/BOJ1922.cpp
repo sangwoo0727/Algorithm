@@ -2,8 +2,8 @@
 #include <queue>
 #include <vector>
 #include <utility>
-#include <functional>
 #include <algorithm>
+#include <functional>
 using namespace std;
 
 vector <pair<int,int>> v[1001];
