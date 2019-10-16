@@ -11,7 +11,7 @@ using namespace std;
 
 
 int N, Min = INF;
-int sum, asum, bsum;
+int sum;
 int person_num[11];
 bool connection[11][11]; 
 bool selected[11];
@@ -44,6 +44,7 @@ void comb(int m, int idx) {
 	if (m >= 1 && m < N) {
 		vector <int> av;
 		vector <int> bv;
+		int asum = 0, bsum = 0;
 		for (int i = 1; i <= N; i++) {
 			if (selected[i]) {
 				av.push_back(i);
@@ -57,8 +58,6 @@ void comb(int m, int idx) {
 		if (bfs(av,true) && bfs(bv,false)) {
 			Min = min(Min, abs(asum - bsum));
 		}
-		asum = bsum = 0;
-		av.resize(0); bv.resize(0);
 	}
 	if (idx > N) return;
 	selected[idx] = true;
