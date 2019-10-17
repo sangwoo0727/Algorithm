@@ -27,8 +27,7 @@ void bfs() {
 	memcpy(tmp_board, board, sizeof(board));
 	kill_cnt = 0;
 	int tmp_enemy = last_enemy;
-	while (tmp_enemy < N) {
-		tmp_enemy++;
+	while (tmp_enemy++ < N) {
 		vector <pair <int, int> > v_tmp;
 		for (int t = 0; t < 3; t++) {
 			memset(check, false , sizeof(check));
