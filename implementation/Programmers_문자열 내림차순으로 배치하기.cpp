@@ -1,0 +1,13 @@
+#include <string>
+#include <vector>
+#include <functional>
+#include <algorithm>
+
+using namespace std;
+
+string solution(string s) {
+	sort(s.begin(), s.end(), greater<char>());
+	string answer = "";
+	answer = s;
+	return answer;
+}
