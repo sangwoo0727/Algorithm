@@ -35,10 +35,3 @@ vector<int> solution(int N, vector<int> stages) {
 	}
 	return answer;
 }
-
-int main() {
-	int N;
-	cin >> N;
-	vector <int> stages;
-
-}
