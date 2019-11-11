@@ -1,6 +1,6 @@
 # My_coding
 
-간단한 문제를 제외한 중요 문제나 어려운 문제에 대해서는 http://sangwoo0727.github.io 에 포스팅을 하는 중입니다.
+간단한 문제를 제외한 중요 문제나 어려운 문제에 대해서는 http://sangwoo0727.github.io 에 포스팅을 하는 중입니다
 
 
 
