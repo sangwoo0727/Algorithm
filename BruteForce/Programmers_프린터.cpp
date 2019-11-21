@@ -21,7 +21,7 @@ int solution(vector<int> priorities, int location) {
 			}
 			else location--;
 		}
-		if (priorities[0] == pq.top()) {
+		else if (priorities[0] == pq.top()) {
 			if (location == 0) {
 				priorities.erase(priorities.begin());
 				answer++;
