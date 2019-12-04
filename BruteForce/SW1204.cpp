@@ -1,8 +1,3 @@
-/* SW문제해결기본 1일차-최빈수 구하기
-정말 쉬운 문제였다. 그냥 pair하나써서
-0부터 100점까지 많이나온 순서대로 입력하고
-정렬시킨다음에 제일 많이나온 숫자의 first 번호를 출력하면 된다.*/
-
 #include <iostream>
 #include <utility>
 #include <algorithm>
