@@ -1,5 +1,3 @@
-package hello;
-
 import java.util.*;
 import java.io.*;
 
@@ -11,7 +9,7 @@ class ans{
 	}
 }
 
-public class helloworld {
+public class Solution {
 	static int[][] arr;
 	static boolean[][] check;
 	static int res;
