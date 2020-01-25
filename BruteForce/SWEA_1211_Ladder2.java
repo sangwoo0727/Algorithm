@@ -25,24 +25,25 @@ public class Solution {
 	}
 	
 	static ans go(int n,int m,int cnt) {
-		while(true) {
-			if(n==0) {
-				break;
-			}
+		if(n==0) {
+			return new ans(m,cnt);
+		}
+		else {
+			int nn=0,mn=0;
 			for(int k=0;k<3;k++) {
-				int nn = n+dc[k];
-				int mn = m+dr[k];
+				nn = n+dc[k];
+				mn = m+dr[k];
 				if(nn<0 || nn>=100 || mn <0 || mn >=100)
 					continue;
 				else if(check[nn][mn] || arr[nn][mn]==0)
 					continue;
 				check[nn][mn]=true;
-				n = nn; m= mn; cnt+=1;
 				break;
 			}
+			return go(nn,mn,cnt+1);
 		}
-		return new ans(m,cnt);
 	}
+	
     public static void main(String[] args) throws Exception {
         System.setIn(new FileInputStream("res/input.txt"));
     	int n = 0,m = 0, result = 0;
