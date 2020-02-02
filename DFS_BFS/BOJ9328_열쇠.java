@@ -29,62 +29,63 @@ public class Solution {
 	static int H,W;
 	
 	static boolean inner(int n, int m) {
-		if(n<=0 || n>=H-1 || m<=0 || m>=W-1 || ck[n][m] || bd[n][m]=='*') 
-			return false;
-		else return true;
+		return 0<n && n<H-1 && 0<m && m<W-1 && !ck[n][m] && bd[n][m]!='*';
 	}
+	
 	static void initGame(Queue<Node> gq, ArrayList<Door> aq) { //게임 시작은 테두리에서만
 		for(int w=0; w<W; w++) {
-			if(bd[0][w]=='.' || bd[0][w]=='$') {
+			char ch1 = bd[0][w], ch2 = bd[H-1][w];
+			if(ch1=='.' || ch1=='$') {
 				gq.add(new Node(0,w));
-			}else if(bd[0][w]-'a'>=0 && bd[0][w]-'a'<=25) {
-				alp[bd[0][w]-'a'] = true;
+			}else if( 'a' <= ch1 && ch1 <= 'z') {
+				alp[ch1-'a'] = true;
 				gq.add(new Node(0,w));
-			}else if(bd[0][w]-'A'>=0 && bd[0][w]-'A'<=25){
-				if(alp[bd[0][w]-'A']) {
+			}else if( 'A' <= ch1 && ch1 <= 'Z'){
+				if(alp[ch1-'A']) {
 					gq.add(new Node(0,w));
 				}else {
-					aq.add(new Door(0,w,bd[0][w]));
+					aq.add(new Door(0,w,ch1));
 				}
 			}
 			
-			if(bd[H-1][w]=='.' || bd[H-1][w]=='$') {
+			if(ch2=='.' || ch2=='$') {
 				gq.add(new Node(H-1,w));
-			}else if(bd[H-1][w]-'a'>=0 && bd[H-1][w]-'a'<=25) {
-				alp[bd[H-1][w]-'a'] = true;
+			}else if( 'a' <= ch2 && ch2 <= 'z') {
+				alp[ch2-'a'] = true;
 				gq.add(new Node(H-1,w));
-			}else if(bd[H-1][w]-'A'>=0 && bd[H-1][w]-'A'<=25){
-				if(alp[bd[H-1][w]-'A']) {
+			}else if('A'<= ch2 && ch2 <= 'Z'){
+				if(alp[ch2-'A']) {
 					gq.add(new Node(H-1,w));
 				}else {
-					aq.add(new Door(H-1,w,bd[H-1][w]));
+					aq.add(new Door(H-1,w,ch2));
 				}
 			}
 		}
 		for(int h=1;h<H-1;h++) {
-			if(bd[h][0]=='.' || bd[h][0]=='$') {
+			char ch1 = bd[h][0], ch2 = bd[h][W-1];
+			if(ch1=='.' || ch1=='$') {
 				gq.add(new Node(h,0));
-			}else if(bd[h][0]-'a'>=0 && bd[h][0]-'a'<=25) {
-				alp[bd[h][0]-'a'] = true;
+			}else if( 'a' <= ch1 && ch1 <= 'z') {
+				alp[ch1-'a'] = true;
 				gq.add(new Node(h,0));
-			}else if(bd[h][0]-'A'>=0 && bd[h][0]-'A'<=25){
-				if(alp[bd[h][0]-'A']) {
+			}else if('A' <= ch1 && ch1 <= 'Z'){
+				if(alp[ch1-'A']) {
 					gq.add(new Node(h,0));
 				}else {
-					aq.add(new Door(h,0,bd[h][0]));
+					aq.add(new Door(h,0,ch1));
 				}
 			}
 			
-			if(bd[h][W-1]=='.' || bd[h][W-1]=='$') {
+			if(ch2=='.' || ch2=='$') {
 				gq.add(new Node(h,W-1));
-			}else if(bd[h][W-1]-'a'>=0 && bd[h][W-1]-'a'<=25) {
-				alp[bd[h][W-1]-'a'] = true;
+			}else if('a'<= ch2 && ch2 <= 'z') {
+				alp[ch2-'a'] = true;
 				gq.add(new Node(h,W-1));
-			}else if(bd[h][W-1]-'A'>=0 && bd[h][W-1]-'A'<=25){
-				if(alp[bd[h][W-1]-'A']) {
+			}else if( 'A' <= ch2 && ch2 <= 'Z'){
+				if(alp[ch2 -'A']) {
 					gq.add(new Node(h,W-1));
 				}else {
-					aq.add(new Door(h,W-1,bd[h][W-1]));
+					aq.add(new Door(h,W-1,ch2));
 				}
 			}
 			
@@ -98,20 +99,21 @@ public class Solution {
 		
 		while(!gq.isEmpty()) {
 			Node cur = gq.poll();
+			char c = bd[cur.n][cur.m];
 			if(bd[cur.n][cur.m]=='$') {
 				ans++;
-			}else if(bd[cur.n][cur.m]-'a' >=0 && bd[cur.n][cur.m]-'a'<=25) {
-				if(!alp[bd[cur.n][cur.m]-'a']) {
-					alp[bd[cur.n][cur.m]-'a']=true;
+			}else if( 'a' <= c && c <= 'z') {
+				if(!alp[c-'a']) {
+					alp[c-'a']=true;
 				}
 				for(int i=0; i<aq.size();i++) {
-					if(aq.get(i).alp-'A'== bd[cur.n][cur.m]-'a') {
+					if(aq.get(i).alp-'A'== c-'a') {
 						gq.add(new Node(aq.get(i).n, aq.get(i).m));
 					}
 				}
-			}else if(bd[cur.n][cur.m]-'A' >=0 && bd[cur.n][cur.m]-'A'<=25) {
-				if(!alp[bd[cur.n][cur.m]-'A']) {
-					aq.add(new Door(cur.n,cur.m,bd[cur.n][cur.m]));					
+			}else if('A' <= c  && c <= 'Z') {
+				if(!alp[c-'A']) {
+					aq.add(new Door(cur.n,cur.m,c));					
 				}
 			}
 			ck[cur.n][cur.m]= true;
@@ -119,27 +121,28 @@ public class Solution {
 				int nn = cur.n+dc[k];
 				int nm = cur.m+dr[k];
 				if(inner(nn,nm)) {
-					if(bd[nn][nm]=='.' || bd[nn][nm]=='$') {
+					char cn = bd[nn][nm];
+					if(cn=='.' || cn=='$') {
 						gq.add(new Node(nn,nm));
 						ck[nn][nm]=true;
 					}
-					else if(bd[nn][nm]-'a'>=0 && bd[nn][nm]-'a'<=25) {
-						alp[bd[nn][nm]-'a']=true;
+					else if('a'<=cn && cn <= 'z') {
+						alp[cn-'a']=true;
+						gq.add(new Node(nn,nm));
+						ck[nn][nm]=true;
 						for(int i=0; i<aq.size();i++) {
-							if(aq.get(i).alp-'A'== bd[nn][nm]-'a') {
+							if(aq.get(i).alp-'A'== cn-'a') {
 								gq.add(new Node(aq.get(i).n, aq.get(i).m));
-								gq.add(new Node(nn,nm));
-								ck[nn][nm]=true;
 								ck[aq.get(i).n][aq.get(i).m]= true;
 							}
 						}
 					}
 					else {
-						if(alp[bd[nn][nm]-'A']) {
+						if(alp[cn-'A']) {
 							gq.add(new Node(nn,nm));
 							ck[nn][nm]=true;
 						}else {
-							aq.add(new Door(nn,nm,bd[nn][nm]));
+							aq.add(new Door(nn,nm,cn));
 						}
 					}
 				}
