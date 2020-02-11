@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
  
-public class Solution {
+public class SWEA3289_서로소집합 {
     static int[] root;
     static int N,M;
     public static void init() {
