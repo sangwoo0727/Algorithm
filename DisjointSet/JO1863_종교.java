@@ -29,8 +29,7 @@ public class JO1863_종교 {
 		n = find(n);
 		m = find(m);
 		if(n!=m) {
-			if(n<m) p[m]=n;
-			else p[n]=m;
+			p[m]=n;
 		}
 	}
 	private static int find(int n) {
