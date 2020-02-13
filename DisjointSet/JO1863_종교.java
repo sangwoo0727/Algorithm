@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class JO1863_ {
+public class JO1863_종교 {
 	static int N,M;
 	static int[] p;
 	public static void main(String[] args) throws Exception {
