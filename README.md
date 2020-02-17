@@ -10,12 +10,18 @@ c언어, c++ 로 작성
 
 
 
-백준 온라인 저지 : https://www.acmicpc.net/
+[백준 온라인 저지](https://www.acmicpc.net/)
+* kangsw8940
 
-삼성 엑스퍼트 아카데미 : https://swexpertacademy.com
+[CodeForce](https://codeforces.com/)
+* sangwoo0727
 
-프로그래머스 : https://programmers.co.kr/
+[삼성 엑스퍼트 아카데미](https://swexpertacademy.com)
+* kangsw9395@gmail.com
 
-알고스팟 : https://algospot.com/
+[프로그래머스](https://programmers.co.kr/)
+* kangsw9395@gmail.com
+
+[알고스팟](https://algospot.com/)
 
 자료구조 구현 출처 : 윤성우의 열혈자료구조 
