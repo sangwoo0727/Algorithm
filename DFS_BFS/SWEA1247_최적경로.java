@@ -3,7 +3,7 @@ package homework;
 import java.util.*;
 import java.io.*;
 
-public class Solution_d5_1247_최적경로_서울_06_강상우 {
+public class SWEA1247_최적경로 {
 	static BufferedReader br = null;
 	static StringTokenizer st = null;
 	static StringBuilder sb = new StringBuilder();
