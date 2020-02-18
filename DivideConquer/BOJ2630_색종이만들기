@@ -1,0 +1,48 @@
+import java.util.*;
+import java.io.*;
+
+public class BOJ2630_색종이만들기 {
+	static int[][] bd;
+	static int[] ans = new int[2];
+	static int N;
+	
+	public static void go(int n, int m, int size) {
+		if(size==1) {
+			ans[bd[n][m]]++;
+			return; 
+		}
+		int tmp = bd[n][m];
+		boolean flg = false;
+		for(int i=n; i<size+n; i++) {
+			for(int j=m; j<size+m; j++) {
+				if(bd[i][j]!=tmp) {
+					flg=true;
+					break;
+				}
+			}
+		}
+		if(flg) {
+			go(n,m,size/2);
+			go(n+size/2,m,size/2);
+			go(n,m+size/2,size/2);
+			go(n+size/2,m+size/2,size/2);
+		}else {
+			ans[tmp]++;
+		}
+	}
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		N = Integer.parseInt(br.readLine());
+		bd = new int[N+1][N+1];
+		for(int i=0; i<N; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			for(int j=0; j<N; j++) {
+				bd[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		go(0,0, N);
+		System.out.println(ans[0]);
+		System.out.println(ans[1]);
+	}
+
+}
