@@ -58,13 +58,6 @@ class Solution {
         }
     }
 
-    public static boolean isSameParent(int x, int y){
-        x = find(x);
-        y = find(y);
-        if(x != y) return false;
-        return true;
-    }
-
     public static int find(int x){
         if(p[x] == x) return x;
         else
