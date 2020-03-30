@@ -16,17 +16,17 @@ public class BOJ9765_여섯방정식 {
 		}
 		for(int i=2; i<= Math.sqrt(cn[0]); i++) {
 			if(pn[i]) continue;
-			if(cn[0]%(long)i==0) {
+			if(cn[0]%i==0) {
 				if(cn[0]/i <= 20000000) {
-					int j = (int) (cn[0]/(long)i);
-					if(cn[4]%(long)j==0 && cn[4]/(long)j <=20000000) {
-						int k = (int) (cn[4]/(long)j);
-						System.out.print(i+" "+j+" "+k);
+					int j = (int) (cn[0]/i);
+					if(cn[4]%j==0 && cn[4]/j <=20000000) {
+						int k = (int) (cn[4]/j);
+						System.out.print(i+" "+j+" "+k+ " ");
 						break;
 					}
 					if(cn[4]%(long)i==0 && cn[4]/(long)i <=20000000) {
-						int k = (int) (cn[4]/(long)i);
-						System.out.print(j+" "+i+" "+k);
+						int k = (int) (cn[4]/i);
+						System.out.print(j+" "+i+" "+k+" ");
 						break;
 					}
 				}
@@ -34,16 +34,16 @@ public class BOJ9765_여섯방정식 {
 		}
 		for(int i=2; i<= Math.sqrt(cn[5]); i++) {
 			if(pn[i]) continue;
-			if(cn[5]%(long)i==0) {
+			if(cn[5]%i==0) {
 				if(cn[5]/(long)i <= 20000000) {
-					int j = (int) (cn[5]/(long)i);
-					if(cn[2]%(long)j==0 && cn[2]/(long)j <=20000000) {
-						int k = (int) (cn[2]/(long)j);
+					int j = (int) (cn[5]/i);
+					if(cn[2]%j==0 && cn[2]/j <=20000000) {
+						int k = (int) (cn[2]/j);
 						System.out.print(i+" "+j+" "+k);
 						break;
 					}
-					if(cn[2]%(long)i==0 && cn[2]/(long)i <=20000000) {
-						int k = (int) (cn[2]/(long)i);
+					if(cn[2]%i==0 && cn[2]/i <=20000000) {
+						int k = (int) (cn[2]/i);
 						System.out.print(j+" "+i+" "+k);
 						break;
 					}
