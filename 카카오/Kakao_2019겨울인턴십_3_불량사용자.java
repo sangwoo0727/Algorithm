@@ -3,7 +3,7 @@ import java.util.*;
 public class Kakao_2019겨울인턴십_3_불량사용자 {
 	static Set<Integer> set = new HashSet<>();
 	static int R;
-	public static int solution(String[] user_id, String[] banned_id) {
+	public int solution(String[] user_id, String[] banned_id) {
 		R = banned_id.length;
 		permu(0,0,user_id,banned_id);
 		return set.size();
