@@ -27,19 +27,14 @@ public class JUNGOL1681_해밀턴순환회로 {
 		System.out.println(ans);
 	}
 	static void comb(int r,int idx, int sum) {
-		System.out.println(sum);
 		if(r==N) {
 			ans = Math.min(ans, sum);
-			for(int i=0; i<N; i++) {
-				System.out.println(visit[i]);
-			}
 			return;
 		}
 		if(r==N-1) {
-				if(bd[idx][0]!=0 && sum+bd[idx][0]<ans) {
-					comb(r+1,0,sum+bd[idx][0]);
-				}
-			
+			if(bd[idx][0]!=0 && sum+bd[idx][0]<ans) {
+				comb(r+1,0,sum+bd[idx][0]);
+			}		
 		}
 		for(int i=1; i<N; i++) {
 			if(!visit[i] && bd[idx][i]!=0 && sum+bd[idx][i]<ans) {
