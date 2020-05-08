@@ -11,17 +11,14 @@ public class Kakao_2019BlindRecruitment_3_후보키 {
 		for(int i=1; i<(1<<M); i++) {
 			list.add(i);
 		}
-		Collections.sort(list, new Comparator<Integer>(){
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				int cnt = 0, cnt2 = 0;
-				for(int i=0; i<M; i++) {
-					if((o1 &(1<<i))>0) cnt++;
-					if((o2 &(1<<i))>0) cnt2++;
-				}
-				if(cnt==cnt2) return o1.compareTo(o2);
-				else return cnt-cnt2;
+		Collections.sort(list, (Integer o1, Integer o2)->{
+			int cnt = 0, cnt2 = 0;
+			for(int i=0; i<M; i++) {
+				if((o1 &(1<<i))>0) cnt++;
+				if((o2 &(1<<i))>0) cnt2++;
 			}
+			if(cnt==cnt2) return o1.compareTo(o2);
+			else return cnt-cnt2;
 		});
 		for(int bit: list) {
 			boolean flg = false;
