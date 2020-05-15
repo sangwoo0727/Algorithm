@@ -68,10 +68,6 @@ public class BOJ1194_달이차오른다가자 {
 	static boolean inner(int n, int m) {
 		return 0<=n && n<N && 0<=m && m<M && bd[n][m]!='#';
 	}
-	static class Pair{
-		int n,m;
-		Pair(int n,int m){this.n=n; this.m=m;}
-	}
 	static class Node{
 		int n,m,cnt,bit;
 		Node(int n,int m,int cnt,int bit){
