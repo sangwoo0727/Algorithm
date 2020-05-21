@@ -3,7 +3,7 @@ import java.util.*;
 public class Kakao_2018BlindRecruitment_6_뉴스클러스터링 {
 	static List<String> list1 = new ArrayList<>();
 	static List<String> list2 = new ArrayList<>();
-	public static int solution(String str1, String str2) {
+	public int solution(String str1, String str2) {
 		makeList(0,list1,str1);
 		makeList(0,list2,str2);
 		boolean[] visit = new boolean[list1.size()];
@@ -37,17 +37,12 @@ public class Kakao_2018BlindRecruitment_6_뉴스클러스터링 {
 		return answer;
 	}
 	static void makeList(int idx, List<String> list, String s) {
+		s = s.toLowerCase();
 		for(;;) {
 			if(idx==s.length()-1) break;
 			char c = s.charAt(idx);
 			char c2 = s.charAt(idx+1);
-			if('A'<=c && c<='Z') c = (char) ('a'+(c-'A'));
-			else if('a'>c || c>'z') {
-				idx+=1;
-				continue;
-			}
-			if('A'<=c2 && c2<='Z') c2 = (char) ('a'+(c2-'A'));
-			else if('a'>c2 || c2>'z') {
+			if(('a'>c || c>'z')||('a'>c2 || c2>'z')) {
 				idx+=1;
 				continue;
 			}
