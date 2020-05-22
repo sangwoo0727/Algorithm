@@ -2,10 +2,8 @@ import java.io.*;
 import java.util.*;
 
 public class SWEA2112_보호필름 {
+	static int N,M,K,ans;
 	static int[][] bd;
-	static int[] input;
-	static int N,M,K;
-	static boolean total;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
@@ -17,6 +15,7 @@ public class SWEA2112_보호필름 {
 			N = Integer.parseInt(st.nextToken());
 			M = Integer.parseInt(st.nextToken());
 			K = Integer.parseInt(st.nextToken());
+			ans = N;
 			bd = new int[N][M];
 			for(int i=0; i<N; i++) {
 				st = new StringTokenizer(br.readLine());
@@ -24,58 +23,38 @@ public class SWEA2112_보호필름 {
 					bd[i][j] = Integer.parseInt(st.nextToken());
 				}
 			}
-			total = false;
-			for(int i=0; i<=N; i++) {
-				input = new int[i];
-				comb(0,0,i);
-				if(total) {
-					sb.append(i).append("\n");
-					break;
-				}
-			}
+			dfs(0,0);
+			sb.append(ans).append("\n");
 		}
 		System.out.println(sb);
 	}
-	static void comb(int idx, int r, int R) {
-		if(R==0) {
-			if(!check(bd)) {
-				total = true;
-			}
-			return;
-		}else {
-			if(r>=R) {
-				if(!check(bd)) {
-					total = true;
-				}
-				return;
-			}
-			if(idx>=N) return;
-			int[][] tmp = new int[N][M];
-			for(int i=0; i<N; i++) {
-				for(int j=0; j<M; j++) {
-					tmp[i][j] = bd[i][j];
-				}
-			}
-			for(int j=0; j<M; j++) {
-				bd[idx][j]=1;
-			}
-			comb(idx+1,r+1,R);
-			for(int j=0; j<M; j++) {
-				bd[idx][j]=0;
-			}
-			if(total) return;
-			comb(idx+1,r+1,R);
-			for(int i=0; i<N; i++) {
-				for(int j=0; j<M; j++) {
-					bd[i][j] = tmp[i][j];
-				}
-			}
-			if(total) return;
-			comb(idx+1,r,R);
+	static void dfs(int r, int idx) {
+		if(r>=ans) return;
+		if(r>N) return;
+		if(idx==N) {
+			if(check(bd)) {
+				ans = Math.min(ans, r);
+			}			
 		}
+		if(idx>=N) return;
+		int[] tmp = new int[M];
+		for(int j=0; j<M; j++) {
+			tmp[j] = bd[idx][j];
+		}
+		for(int j=0; j<M; j++) {
+			bd[idx][j] = 0;
+		}
+		dfs(r+1,idx+1);
+		for(int j=0; j<M; j++) {
+			bd[idx][j] = 1;
+		}
+		dfs(r+1,idx+1);
+		for(int j=0; j<M; j++) {
+			bd[idx][j] = tmp[j];
+		}
+		dfs(r,idx+1);
 	}
 	static boolean check(int[][] tbd) {
-		boolean tflg = false;
 		for(int j=0; j<M; j++) {
 			boolean flg = false;
 			int n = tbd[0][j];
@@ -95,10 +74,9 @@ public class SWEA2112_보호필름 {
 			if(cnt>=K) flg = true;
 			if(flg) continue;
 			else {
-				tflg = true;
-				break;
+				return false;
 			}
 		}
-		return tflg;
+		return true;
 	}
 }
