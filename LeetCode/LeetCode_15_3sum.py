@@ -3,27 +3,26 @@ from typing import List
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        answer_list = []
-        answer_set = set()
+        answer = []
         nums.sort()
         for idx, num in enumerate(nums):
             if idx == len(nums) - 2:
                 break
+            if idx != 0 and num == nums[idx - 1]:
+                continue
             left, right = idx + 1, len(nums) - 1
             while left < right:
                 sum = num + nums[left] + nums[right]
                 if sum == 0:
-                    answer_set.add((num, nums[left], nums[right]))
+                    answer.append([num, nums[left], nums[right]])
+                    while left < len(nums) - 1 and nums[left] == nums[left + 1]:
+                        left += 1
+                    while right > idx and nums[right] == nums[right - 1]:
+                        right -= 1
                     left += 1
                     right -= 1
                 elif sum < 0:
-                    while left < right and nums[left] == nums[left + 1]:
-                        left += 1
                     left += 1
                 else:
-                    while left < right and nums[right] == nums[right - 1]:
-                        right -= 1
                     right -= 1
-        for t in answer_set:
-            answer_list.append(list(t))
-        return answer_list
+        return answer
