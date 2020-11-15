@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class LeetCode22_GenerateParentheses {
+public class LeetCode_22_GenerateParentheses {
     static List<String> output;
     static Deque<Character> stack;
     static StringBuilder sb;
