@@ -1,21 +1,11 @@
-/**
- * Definition for singly-linked list.
- */
-class ListNode {
-      int val;
-      ListNode next;
-      ListNode() {}
-      ListNode(int val) { this.val = val; }
-      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-}
-
 public class LeetCode_23_MergeKSortedLists {
     public ListNode mergeKLists(ListNode[] lists) {
         int size = lists.length;
-        if (size == 0) return null;
+        if(size == 0) return null;
         for(int dist = 1; dist < size; dist *= 2){
-            for (int i = 0; i < size - dist; i += (dist *= 2)) {
-                lists[i] = merge(lists[i], lists[i + 1]);
+            for (int i = 0; i < size - dist; i+=(dist * 2)) {
+                System.out.println(i +" "+ i+dist);
+                lists[i] = merge(lists[i],lists[i+dist]);
             }
         }
         return lists[0];
