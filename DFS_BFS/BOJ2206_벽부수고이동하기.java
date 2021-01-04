@@ -1,84 +1,66 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-class Node {
-	int n;
-	int m;
-	int wall;
-	int cnt;
-	Node(int n, int m, int wall, int cnt){
-		this.n = n;
-		this.m = m;
-		this.wall = wall;
-		this.cnt = cnt;
-	}
-}
+public class BOJ2206_벽부수고이동하기 {
+    static int[][] map;
+    static boolean[][][] visit;
+    static int[][] d = {{-1, 1, 0, 0}, {0, 0, -1, 1}};
+    static int N, M;
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(input.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        map = new int[N][M];
+        visit = new boolean[N][M][2];
+        for (int i = 0; i < N; i++) {
+            String line = input.readLine();
+            for (int j = 0; j < M; j++) {
+                map[i][j] = line.charAt(j) - '0';
+            }
+        }
+        System.out.println(bfs());
+    }
+    static int bfs() {
+        Queue<Node> q = new LinkedList<>();
+        q.add(new Node(0, 0, 1, 1));
+        int ans = -1;
+        while (!q.isEmpty()) {
+            Node now = q.poll();
+            if (now.n == N - 1 && now.m == M - 1) {
+                ans = now.d;
+                break;
+            }
+            visit[now.n][now.m][now.flag] = true;
+            for (int k = 0; k < 4; k++) {
+                int nn = now.n + d[0][k];
+                int nm = now.m + d[1][k];
+                if (inner(nn, nm, now.flag)) {
+                    if (map[nn][nm] == 0) {
+                        visit[nn][nm][now.flag] = true;
+                        q.add(new Node(nn, nm, now.d + 1, now.flag));
+                    } else {
+                        if (now.flag == 1) {
+                            visit[nn][nm][1] = true;
+                            q.add(new Node(nn, nm, now.d + 1, 0));
+                        }
+                    }
+                }
+            }
+        }
+        return ans;
+    }
 
-public class Solution {
-	static int[][] arr;
-	static int[] dc = {0,0,-1,1};
-	static int[] dr = {-1,1,0,0};
-	static boolean[][][] check;
-	static int N,M;
-	static int Min = Integer.MAX_VALUE;
-	
-	static boolean inner(int n, int m, int wall) {
-		if(n<1 || n>N || m<1 || m>M || check[n][m][wall]) {
-			return false;
-		}
-		return true;
-	}
-	
-	static void bfs(int n, int m) {
-		Queue<Node> q = new	LinkedList<>();
-		q.add(new Node(n,m,0,1));
-		while(!q.isEmpty()) {
-			Node cur = q.poll();
-			check[cur.n][cur.m][cur.wall] = true;
-			if(cur.n==N && cur.m==M) {
-				if(cur.cnt < Min) {
-					Min = cur.cnt;
-				}
-				continue;
-			}
-			for(int k=0; k<4; k++) {
-				int nn = cur.n+dc[k];
-				int nm = cur.m+dr[k];
-				if(inner(nn,nm,cur.wall)) {
-					if(arr[nn][nm]==0) {
-						check[nn][nm][cur.wall]=true;
-						q.add(new Node(nn,nm,cur.wall,cur.cnt+1));
-					}
-					if(arr[nn][nm]==1) {
-						if(cur.wall==1) continue;
-						else {
-							check[nn][nm][1] = true;
-							q.add(new Node(nn,nm,1,cur.cnt+1));
-						}
-					}
-				}
-			}
-		}
-	}
-	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		arr = new int[N+1][M+1];
-		check = new boolean[N+1][M+1][2];
-		for(int i=1; i<=N; i++) {
-			String[] s = br.readLine().split("");
-			for(int j=1; j<=M; j++) {
-				arr[i][j] = Integer.parseInt(s[j-1]);
-			}
-		}
-		bfs(1,1);
-		if(Min == Integer.MAX_VALUE) {
-			System.out.println("-1");
-		}
-		else {
-			System.out.println(Min);
-		}
-	}
+    static boolean inner(int n, int m, int f) {
+        return 0 <= n && n < N && 0 <= m && m < M && !visit[n][m][f];
+    }
+    static class Node{
+        int n,m,d,flag;
+        Node(int n, int m, int d, int flag) {
+            this.n = n;
+            this.m = m;
+            this.d = d;
+            this.flag = flag;
+        }
+    }
 }
