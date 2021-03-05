@@ -9,13 +9,13 @@ public class LEV2_JadenCase문자열만들기 {
             }
             if (i == 0 || s.charAt(i - 1) == ' ') {
                 if (c >= 'a' && c <= 'z') {
-                    answer.append((char) (c - 32));
+                    answer.append(Character.toUpperCase(c));
                 } else {
                     answer.append(c);
                 }
             } else {
                 if (c >= 'A' && c <= 'Z') {
-                    answer.append((char) (c + 32));
+                    answer.append(Character.toLowerCase(c));
                 } else {
                     answer.append(c);
                 }
